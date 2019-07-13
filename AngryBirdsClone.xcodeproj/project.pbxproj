@@ -14,6 +14,7 @@
 		3DF2EBED22D8745D00FDDF66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DF2EBEB22D8745D00FDDF66 /* Main.storyboard */; };
 		3DF2EBEF22D8745D00FDDF66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF2EBEE22D8745D00FDDF66 /* Assets.xcassets */; };
 		3DF2EBF222D8745D00FDDF66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DF2EBF022D8745D00FDDF66 /* LaunchScreen.storyboard */; };
+		3DF2EBFE22D9CFE600FDDF66 /* AngryBirdsTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3DF2EBFD22D9CFE600FDDF66 /* AngryBirdsTileSet.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		3DF2EBEE22D8745D00FDDF66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3DF2EBF122D8745D00FDDF66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3DF2EBF322D8745D00FDDF66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3DF2EBFD22D9CFE600FDDF66 /* AngryBirdsTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AngryBirdsTileSet.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				3DF2EBEE22D8745D00FDDF66 /* Assets.xcassets */,
 				3DF2EBF022D8745D00FDDF66 /* LaunchScreen.storyboard */,
 				3DF2EBF322D8745D00FDDF66 /* Info.plist */,
+				3DF2EBFD22D9CFE600FDDF66 /* AngryBirdsTileSet.sks */,
 			);
 			path = AngryBirdsClone;
 			sourceTree = "<group>";
@@ -130,6 +133,7 @@
 			files = (
 				3DF2EBED22D8745D00FDDF66 /* Main.storyboard in Resources */,
 				3DF2EBE422D8745D00FDDF66 /* GameScene.sks in Resources */,
+				3DF2EBFE22D9CFE600FDDF66 /* AngryBirdsTileSet.sks in Resources */,
 				3DF2EBEF22D8745D00FDDF66 /* Assets.xcassets in Resources */,
 				3DF2EBF222D8745D00FDDF66 /* LaunchScreen.storyboard in Resources */,
 			);
