@@ -64,8 +64,11 @@ class GameScene: SKScene {
                 
                 
                 let olcekSonrasiKonum = convertPoint(fromView: konumView)
-                let konumDelta = CGPoint(x: konum.x - olcekSonrasiKonum.x, y: konum.y - olcekSonrasiKonum.y)
-                let yeniKonum = CGPoint(x: oyunKamera.position.x + konumDelta.x, y: oyunKamera.position.y + konumDelta.y)
+                
+                let konumDelta  = konum - olcekSonrasiKonum
+                let yeniKonum = oyunKamera.position + konumDelta
+                
+                
                 oyunKamera.position = yeniKonum
                 p.scale = 1.0
                 oyunKamera.sinirlariBelirle(sahne: self, frame: mapNode.frame, node: nil)
