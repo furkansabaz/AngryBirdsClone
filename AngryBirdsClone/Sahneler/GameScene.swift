@@ -17,6 +17,7 @@ class GameScene: SKScene {
     var mapNode = SKTileMapNode()
     
     var panGR = UIPanGestureRecognizer()
+    var pinchGR = UIPinchGestureRecognizer()
     
     override func didMove(to view: SKView) {
         setupLevel()
@@ -26,9 +27,8 @@ class GameScene: SKScene {
     func kameraEkle() {
         
         addChild(oyunKamera)
-        
         guard let view = view else {return}
-        
+        oyunKamera.position = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
         camera = oyunKamera
     }
     
@@ -38,8 +38,38 @@ class GameScene: SKScene {
         panGR = UIPanGestureRecognizer(target: self, action: #selector(pan))
         view.addGestureRecognizer(panGR)
         
+        pinchGR = UIPinchGestureRecognizer(target: self, action: #selector(pinch))
+        view.addGestureRecognizer(pinchGR)
     }
     
+    @objc func pinch(p : UIPinchGestureRecognizer) {
+        
+        guard let view = view else { return }
+        if p.numberOfTouches == 2 { //Kullanıcının ekranda dokunduğu nokta sayısı
+            
+            let konumView = p.location(in: view) // pinch işleminin hangi konumda olduğunu verir
+            let konum = convertPoint(fromView: konumView) // pinch ölçeklendirme işlemi yapmadan önceki konumu verir
+            
+            if p.state  == .changed {
+                
+                let olcek = 1 / p.scale // bu ölçeği kameranın yeni göstereceği ölçeği hesaplamak için tanımladık
+                let yeniOlcek = oyunKamera.yScale*olcek
+                
+                oyunKamera.setScale(yeniOlcek)
+                
+                let olcekSonrasiKonum = convertPoint(fromView: konumView)
+                let konumDelta = CGPoint(x: konum.x - olcekSonrasiKonum.x, y: konum.y - olcekSonrasiKonum.y)
+                let yeniKonum = CGPoint(x: oyunKamera.position.x + konumDelta.x, y: oyunKamera.position.y + konumDelta.y)
+                oyunKamera.position = yeniKonum
+                p.scale = 1.0
+                oyunKamera.sinirlariBelirle(sahne: self, frame: mapNode.frame, node: nil)
+            }
+            
+        }
+        
+        
+        
+    }
     @objc func pan(p : UIPanGestureRecognizer) {
         
         guard let view = view else {return}
