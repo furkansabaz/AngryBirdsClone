@@ -21,6 +21,8 @@ class GameScene: SKScene {
     
     var maxOlcek : CGFloat = 0
     
+    var kus = Kus(kusTipi: .Mavi)
+    let anchor = SKNode()
     override func didMove(to view: SKView) {
         setupLevel()
         hazirlaGR()
@@ -98,6 +100,13 @@ class GameScene: SKScene {
         }
         kameraEkle()
         
+        anchor.position = CGPoint(x: mapNode.frame.midX, y: mapNode.frame.midY)
+        addChild(anchor)
+        kusEkle()
     }
     
+    func kusEkle(){
+        kus.position = anchor.position
+        addChild(kus)
+    }
 }
