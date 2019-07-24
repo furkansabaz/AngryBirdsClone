@@ -19,6 +19,8 @@ class GameScene: SKScene {
     var panGR = UIPanGestureRecognizer()
     var pinchGR = UIPinchGestureRecognizer()
     
+    var maxOlcek : CGFloat = 0
+    
     override func didMove(to view: SKView) {
         setupLevel()
         hazirlaGR()
@@ -55,7 +57,11 @@ class GameScene: SKScene {
                 let olcek = 1 / p.scale // bu ölçeği kameranın yeni göstereceği ölçeği hesaplamak için tanımladık
                 let yeniOlcek = oyunKamera.yScale*olcek
                 
-                oyunKamera.setScale(yeniOlcek)
+                print("Yeni Ölçek :  \(yeniOlcek)")
+                if yeniOlcek < maxOlcek && yeniOlcek > 0.5 {
+                    oyunKamera.setScale(yeniOlcek)
+                }
+                
                 
                 let olcekSonrasiKonum = convertPoint(fromView: konumView)
                 let konumDelta = CGPoint(x: konum.x - olcekSonrasiKonum.x, y: konum.y - olcekSonrasiKonum.y)
@@ -74,7 +80,7 @@ class GameScene: SKScene {
         
         guard let view = view else {return}
         
-        let hareket = p.translation(in: view)
+        let hareket = p.translation(in: view) * oyunKamera.yScale
         oyunKamera.position = CGPoint(x: oyunKamera.position.x-hareket.x, y: oyunKamera.position.y + hareket.y)
         oyunKamera.sinirlariBelirle(sahne: self, frame: mapNode.frame, node: nil)
         p.setTranslation(CGPoint.zero, in: view)
@@ -84,6 +90,8 @@ class GameScene: SKScene {
         
         if let map = childNode(withName: "Tile Map Node") as? SKTileMapNode {
             self.mapNode = map
+            maxOlcek = mapNode.mapSize.width / frame.size.width
+            print(maxOlcek)
         }
         kameraEkle()
         
