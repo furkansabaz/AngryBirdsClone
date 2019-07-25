@@ -59,6 +59,9 @@ class GameScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if kus.secildiMi {
+            
+            oyunKamera.sinirlariBelirle(sahne: self, frame: mapNode.frame, node: kus)
+            
             kus.secildiMi = false
             panGR.isEnabled = true
             anchorSinirlariniBelirle(aktif: false)
@@ -147,6 +150,12 @@ class GameScene: SKScene {
             //print(maxOlcek)
         }
         kameraEkle()
+        
+        physicsBody = SKPhysicsBody(edgeLoopFrom: mapNode.frame)
+        physicsBody?.categoryBitMask = FizikKategorileri.kenar
+        physicsBody?.contactTestBitMask = FizikKategorileri.kus | FizikKategorileri.blok
+        physicsBody?.collisionBitMask = FizikKategorileri.tumu
+        
         
         anchor.position = CGPoint(x: mapNode.frame.midX, y: mapNode.frame.midY)
         addChild(anchor)
