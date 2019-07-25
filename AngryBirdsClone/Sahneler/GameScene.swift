@@ -27,6 +27,42 @@ class GameScene: SKScene {
         setupLevel()
         hazirlaGR()
     }
+    var i = 1
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        i = i + 1
+        print("Dokundun-\(i+1)")
+        if let touch = touches.first {
+            let konum = touch.location(in: self)
+            if kus.contains(konum) {
+                print("Kuş Seçildi")
+                panGR.isEnabled = false
+                kus.secildiMi = true
+                kus.position = konum
+            }
+        }
+    }
+    
+    var k = 1
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        k = k + 1
+        print("Moved-\(k)")
+        
+        if let touch = touches.first {
+            
+            if kus.secildiMi {
+                let konum = touch.location(in: self)
+                kus.position = konum
+            }
+        }
+    }
+    
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if kus.secildiMi {
+            kus.secildiMi = false
+            panGR.isEnabled = true
+        }
+    }
     
     func kameraEkle() {
         
@@ -53,13 +89,12 @@ class GameScene: SKScene {
             
             let konumView = p.location(in: view) // pinch işleminin hangi konumda olduğunu verir
             let konum = convertPoint(fromView: konumView) // pinch ölçeklendirme işlemi yapmadan önceki konumu verir
-            
             if p.state  == .changed {
                 
                 let olcek = 1 / p.scale // bu ölçeği kameranın yeni göstereceği ölçeği hesaplamak için tanımladık
                 let yeniOlcek = oyunKamera.yScale*olcek
                 
-                print("Yeni Ölçek :  \(yeniOlcek)")
+                //print("Yeni Ölçek :  \(yeniOlcek)")
                 if yeniOlcek < maxOlcek && yeniOlcek > 0.5 {
                     oyunKamera.setScale(yeniOlcek)
                 }
@@ -96,7 +131,7 @@ class GameScene: SKScene {
         if let map = childNode(withName: "Tile Map Node") as? SKTileMapNode {
             self.mapNode = map
             maxOlcek = mapNode.mapSize.width / frame.size.width
-            print(maxOlcek)
+            //print(maxOlcek)
         }
         kameraEkle()
         

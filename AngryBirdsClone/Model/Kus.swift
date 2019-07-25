@@ -19,6 +19,7 @@ enum KusTipi : String {
 class Kus : SKSpriteNode {
     
     let kusTipi : KusTipi
+    var secildiMi : Bool = false
     init(kusTipi : KusTipi) {
         self.kusTipi = kusTipi
         
