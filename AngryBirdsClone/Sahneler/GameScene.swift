@@ -61,6 +61,19 @@ class GameScene: SKScene {
         if kus.secildiMi {
             kus.secildiMi = false
             panGR.isEnabled = true
+            anchorSinirlariniBelirle(aktif: false)
+            
+            kus.ucuyorMu = true
+            
+            let xFark = anchor.position.x - kus.position.x
+            let yFark = anchor.position.y - kus.position.y
+            
+            let impulse = CGVector(dx: xFark, dy: yFark)
+            kus.physicsBody?.applyImpulse(impulse)
+            kus.isUserInteractionEnabled = false
+            
+            
+            
         }
     }
     
@@ -141,7 +154,30 @@ class GameScene: SKScene {
     }
     
     func kusEkle(){
+        
+        kus.physicsBody = SKPhysicsBody(rectangleOf: kus.size)
+        kus.physicsBody?.categoryBitMask = FizikKategorileri.kus
+        kus.physicsBody?.contactTestBitMask = FizikKategorileri.tumu
+        kus.physicsBody?.collisionBitMask = FizikKategorileri.blok | FizikKategorileri.kenar
+        kus.physicsBody?.isDynamic = false
+        
         kus.position = anchor.position
         addChild(kus)
+        anchorSinirlariniBelirle(aktif: true)
     }
+    
+    func anchorSinirlariniBelirle(aktif : Bool) {
+        
+        if aktif {
+            
+            let gerilmeAralik = SKRange(lowerLimit: 0.0, upperLimit: kus.size.width*2.8)
+            
+            let kusConstraint = SKConstraint.distance(gerilmeAralik, to: anchor)
+            kus.constraints = [kusConstraint]
+        } else {
+            kus.constraints?.removeAll()
+        }
+    }
+    
+    
 }

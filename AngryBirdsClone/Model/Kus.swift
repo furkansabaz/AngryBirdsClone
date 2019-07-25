@@ -20,6 +20,13 @@ class Kus : SKSpriteNode {
     
     let kusTipi : KusTipi
     var secildiMi : Bool = false
+    var ucuyorMu : Bool = false {
+        didSet {
+            if ucuyorMu {
+                physicsBody?.isDynamic = true
+            }
+        }
+    }
     init(kusTipi : KusTipi) {
         self.kusTipi = kusTipi
         
