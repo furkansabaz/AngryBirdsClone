@@ -7,6 +7,13 @@
 //
 
 import Foundation
+import UIKit
+
+
+struct ZPozisyon {
+    static let arkaPlan : CGFloat = 0
+    static let engeller : CGFloat = 1
+}
 
 
 struct FizikKategorileri {

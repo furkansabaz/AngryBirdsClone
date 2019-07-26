@@ -178,6 +178,42 @@ class GameScene: SKScene {
         }
         kameraEkle()
         
+        for node in mapNode.children {
+            
+            if let node = node as? SKSpriteNode {
+                
+                guard let adi = node.name else { continue}
+                
+                let bloklar = ["Cam","Tas","Tahta"]
+                
+                if !bloklar.contains(adi) { continue }
+                
+                
+                guard let blokTipi = BlokTipi(rawValue: adi) else { continue }
+                
+                print("Geldi")
+                let blok = Blok(tipi: blokTipi)
+                
+                blok.color = .brown
+                blok.position = node.position
+                blok.size = node.size
+                blok.zPosition = ZPozisyon.engeller
+                blok.bodyOlustur()
+                mapNode.addChild(blok)
+                node.color = .clear
+        
+                
+                
+            }
+            
+            
+        }
+        
+        
+        
+        
+        
+        
         let rect = CGRect(x: 0, y: mapNode.tileSize.height, width: mapNode.frame.size.width, height: mapNode.frame.size.height - mapNode.tileSize.height)
         physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
         
@@ -191,7 +227,7 @@ class GameScene: SKScene {
         physicsBody?.collisionBitMask = FizikKategorileri.tumu
         
         
-        anchor.position = CGPoint(x: mapNode.frame.midX, y: mapNode.frame.midY)
+        anchor.position = CGPoint(x: frame.width/2, y: frame.height/2)
         addChild(anchor)
         kusEkle()
     }

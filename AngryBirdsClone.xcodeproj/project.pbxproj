@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D152EBC22DC75BA00295216 /* OyunKamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D152EBB22DC75BA00295216 /* OyunKamera.swift */; };
+		3D48AAE722EB73B30088662E /* Blok.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D48AAE622EB73B30088662E /* Blok.swift */; };
 		3D48B67E22E9E2FF00AEEF0A /* Ayarlar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D48B67D22E9E2FF00AEEF0A /* Ayarlar.swift */; };
 		3DA1E26322E870AD0099C0FC /* Uzantilar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1E26222E870AD0099C0FC /* Uzantilar.swift */; };
 		3DA1E26722E889A80099C0FC /* Kus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1E26622E889A80099C0FC /* Kus.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		3D152EBB22DC75BA00295216 /* OyunKamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OyunKamera.swift; sourceTree = "<group>"; };
+		3D48AAE622EB73B30088662E /* Blok.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blok.swift; sourceTree = "<group>"; };
 		3D48B67D22E9E2FF00AEEF0A /* Ayarlar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ayarlar.swift; sourceTree = "<group>"; };
 		3DA1E26222E870AD0099C0FC /* Uzantilar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uzantilar.swift; sourceTree = "<group>"; };
 		3DA1E26622E889A80099C0FC /* Kus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kus.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				3DA1E26222E870AD0099C0FC /* Uzantilar.swift */,
 				3DA1E26622E889A80099C0FC /* Kus.swift */,
 				3D48B67D22E9E2FF00AEEF0A /* Ayarlar.swift */,
+				3D48AAE622EB73B30088662E /* Blok.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				3DA1E26722E889A80099C0FC /* Kus.swift in Sources */,
 				3DF2EBEA22D8745D00FDDF66 /* GameViewController.swift in Sources */,
 				3DA1E26322E870AD0099C0FC /* Uzantilar.swift in Sources */,
+				3D48AAE722EB73B30088662E /* Blok.swift in Sources */,
 				3DF2EBE222D8745D00FDDF66 /* AppDelegate.swift in Sources */,
 				3D152EBC22DC75BA00295216 /* OyunKamera.swift in Sources */,
 			);
