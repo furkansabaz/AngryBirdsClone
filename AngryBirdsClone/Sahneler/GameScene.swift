@@ -13,39 +13,65 @@ class GameScene: SKScene {
     
     
     let oyunKamera = OyunKamera()
-    
     var mapNode = SKTileMapNode()
-    
     var panGR = UIPanGestureRecognizer()
     var pinchGR = UIPinchGestureRecognizer()
-    
     var maxOlcek : CGFloat = 0
-    
     var kus = Kus(kusTipi: .Mavi)
+    var kuslar = [
+    Kus(kusTipi: .Kirmizi),
+    Kus(kusTipi: .Yesil),
+    Kus(kusTipi: .Turuncu)
+    ]
+    
     let anchor = SKNode()
+    
+    var oyunDurumu : OyunDurumu = .Hazir
+    
     override func didMove(to view: SKView) {
         setupLevel()
         hazirlaGR()
     }
-    var i = 1
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        i = i + 1
-        print("Dokundun-\(i+1)")
-        if let touch = touches.first {
-            let konum = touch.location(in: self)
-            if kus.contains(konum) {
-                print("Kuş Seçildi")
-                panGR.isEnabled = false
-                kus.secildiMi = true
-                kus.position = konum
+        
+        
+        switch oyunDurumu {
+            
+        case .Hazir :
+            if let touch = touches.first {
+                let konum = touch.location(in: self)
+                if kus.contains(konum) {
+                    panGR.isEnabled = false
+                    kus.secildiMi = true
+                    kus.position = konum
+                }
             }
+            break
+        case .Ucuyor :
+            break
+        case .Bitis :
+            guard let view = view else {return}
+            oyunDurumu = .Dirilme
+            let kameraGeriAction = SKAction.move(to: CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2), duration: 2.0)
+            kameraGeriAction.timingMode = .easeInEaseOut
+            oyunKamera.run(kameraGeriAction, completion: {
+                self.panGR.isEnabled = true
+                self.kusEkle()
+            })
+            break
+        case .Dirilme :
+            break
+            
         }
+        
+        
+        
+        
+        
     }
     
-    var k = 1
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        k = k + 1
-        print("Moved-\(k)")
+        
         
         if let touch = touches.first {
             
@@ -67,6 +93,7 @@ class GameScene: SKScene {
             anchorSinirlariniBelirle(aktif: false)
             
             kus.ucuyorMu = true
+            oyunDurumu = .Ucuyor
             
             let xFark = anchor.position.x - kus.position.x
             let yFark = anchor.position.y - kus.position.y
@@ -151,7 +178,14 @@ class GameScene: SKScene {
         }
         kameraEkle()
         
-        physicsBody = SKPhysicsBody(edgeLoopFrom: mapNode.frame)
+        let rect = CGRect(x: 0, y: mapNode.tileSize.height, width: mapNode.frame.size.width, height: mapNode.frame.size.height - mapNode.tileSize.height)
+        physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
+        
+        print(mapNode.tileSize.height)
+        print(mapNode.frame.size.width)
+        print(mapNode.frame.size.height)
+        
+        
         physicsBody?.categoryBitMask = FizikKategorileri.kenar
         physicsBody?.contactTestBitMask = FizikKategorileri.kus | FizikKategorileri.blok
         physicsBody?.collisionBitMask = FizikKategorileri.tumu
@@ -163,6 +197,13 @@ class GameScene: SKScene {
     }
     
     func kusEkle(){
+        
+        if kuslar.isEmpty {
+            print("Hakkınız Bitti")
+            return
+        }
+        kus = kuslar.removeFirst()
+        oyunDurumu = .Hazir
         
         kus.physicsBody = SKPhysicsBody(rectangleOf: kus.size)
         kus.physicsBody?.categoryBitMask = FizikKategorileri.kus
@@ -188,5 +229,14 @@ class GameScene: SKScene {
         }
     }
     
-    
+    override func didSimulatePhysics() {
+        guard let body = kus.physicsBody else { return }
+        
+        if oyunDurumu == .Ucuyor && body.isResting {
+            oyunKamera.sinirlariBelirle(sahne: self, frame: mapNode.frame, node: nil)
+            kus.removeFromParent()
+            oyunDurumu = .Bitis
+        }
+        
+    }
 }

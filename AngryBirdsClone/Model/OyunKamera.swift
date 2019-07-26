@@ -22,7 +22,7 @@ class OyunKamera: SKCameraNode {
         
         
         if let node = node {
-            let sifir = SKRange(constantValue: 500)
+            let sifir = SKRange(constantValue: 0)
             
             let konumConstraint = SKConstraint.distance(sifir, to: node)
             constraints = [konumConstraint, kenarConstraint]

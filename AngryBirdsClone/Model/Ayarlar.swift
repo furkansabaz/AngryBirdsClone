@@ -18,3 +18,11 @@ struct FizikKategorileri {
     
     
 }
+
+
+enum OyunDurumu {
+    case Hazir
+    case Ucuyor
+    case Bitis
+    case Dirilme
+}
