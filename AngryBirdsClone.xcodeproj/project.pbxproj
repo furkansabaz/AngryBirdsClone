@@ -76,7 +76,6 @@
 		3D152EB822DC729F00295216 /* Sahneler */ = {
 			isa = PBXGroup;
 			children = (
-				3DF2EBE322D8745D00FDDF66 /* GameScene1.sks */,
 				3DF2EBE722D8745D00FDDF66 /* GameScene.swift */,
 				3DE745E922EC8BEF00529FEA /* MenuScene.swift */,
 				3DE745EB22EC8C1200529FEA /* LevelScene.swift */,
@@ -108,6 +107,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3DE745F122ECC5F800529FEA /* Leveller */ = {
+			isa = PBXGroup;
+			children = (
+				3DF2EBE322D8745D00FDDF66 /* GameScene1.sks */,
+			);
+			path = Leveller;
+			sourceTree = "<group>";
+		};
 		3DF2EBD522D8745D00FDDF66 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +134,7 @@
 		3DF2EBE022D8745D00FDDF66 /* AngryBirdsClone */ = {
 			isa = PBXGroup;
 			children = (
+				3DE745F122ECC5F800529FEA /* Leveller */,
 				3D152EBA22DC72A900295216 /* Model */,
 				3D152EB922DC72A400295216 /* Arayüz */,
 				3D152EB822DC729F00295216 /* Sahneler */,
