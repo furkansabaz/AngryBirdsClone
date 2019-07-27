@@ -36,7 +36,9 @@ class Blok : SKSpriteNode {
         }
         
         hasarDegeri = (2*cani)/5
-        super.init(texture: nil, color: .clear, size: .zero)
+        
+        let texture = SKTexture(imageNamed: tipi.rawValue.lowercased())
+        super.init(texture: texture, color: .clear, size: .zero)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -62,7 +64,9 @@ class Blok : SKSpriteNode {
         if cani <= 0 {
             removeFromParent()
         } else if cani < hasarDegeri {
-            color = .red
+            
+            let kirikBlok = SKTexture(imageNamed: tipi.rawValue.lowercased()+"Kirik")
+            texture = kirikBlok
         }
         
         

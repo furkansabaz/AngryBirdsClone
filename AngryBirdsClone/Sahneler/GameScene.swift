@@ -196,13 +196,14 @@ class GameScene: SKScene {
                 print("Geldi")
                 let blok = Blok(tipi: blokTipi)
                 
-                blok.color = .brown
+                
                 blok.position = node.position
                 blok.size = node.size
                 blok.zPosition = ZPozisyon.engeller
+                blok.zRotation = node.zRotation
                 blok.bodyOlustur()
                 mapNode.addChild(blok)
-                node.color = .clear
+                node.removeFromParent()
         
                 
                 
