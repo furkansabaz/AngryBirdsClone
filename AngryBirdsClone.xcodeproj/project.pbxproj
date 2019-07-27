@@ -15,6 +15,7 @@
 		3DE745EA22EC8BEF00529FEA /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE745E922EC8BEF00529FEA /* MenuScene.swift */; };
 		3DE745EC22EC8C1200529FEA /* LevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE745EB22EC8C1200529FEA /* LevelScene.swift */; };
 		3DE745F022ECA8DE00529FEA /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE745EF22ECA8DE00529FEA /* SKButton.swift */; };
+		3DE745F622ECEB6A00529FEA /* GameScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3DE745F522ECEB6A00529FEA /* GameScene2.sks */; };
 		3DF2EBE222D8745D00FDDF66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF2EBE122D8745D00FDDF66 /* AppDelegate.swift */; };
 		3DF2EBE422D8745D00FDDF66 /* GameScene1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3DF2EBE322D8745D00FDDF66 /* GameScene1.sks */; };
 		3DF2EBE822D8745D00FDDF66 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF2EBE722D8745D00FDDF66 /* GameScene.swift */; };
@@ -34,6 +35,7 @@
 		3DE745E922EC8BEF00529FEA /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		3DE745EB22EC8C1200529FEA /* LevelScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelScene.swift; sourceTree = "<group>"; };
 		3DE745EF22ECA8DE00529FEA /* SKButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
+		3DE745F522ECEB6A00529FEA /* GameScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene2.sks; sourceTree = "<group>"; };
 		3DF2EBDE22D8745D00FDDF66 /* AngryBirdsClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AngryBirdsClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF2EBE122D8745D00FDDF66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DF2EBE322D8745D00FDDF66 /* GameScene1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene1.sks; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				3DF2EBE322D8745D00FDDF66 /* GameScene1.sks */,
+				3DE745F522ECEB6A00529FEA /* GameScene2.sks */,
 			);
 			path = Leveller;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				3DF2EBFE22D9CFE600FDDF66 /* AngryBirdsTileSet.sks in Resources */,
 				3DF2EBEF22D8745D00FDDF66 /* Assets.xcassets in Resources */,
 				3DF2EBF222D8745D00FDDF66 /* LaunchScreen.storyboard in Resources */,
+				3DE745F622ECEB6A00529FEA /* GameScene2.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
