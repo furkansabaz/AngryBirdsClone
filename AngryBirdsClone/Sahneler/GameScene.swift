@@ -29,6 +29,8 @@ class GameScene: SKScene {
     var oyunDurumu : OyunDurumu = .Hazir
     
     override func didMove(to view: SKView) {
+        
+        physicsWorld.contactDelegate = self
         setupLevel()
         hazirlaGR()
     }
@@ -273,6 +275,32 @@ class GameScene: SKScene {
             kus.removeFromParent()
             oyunDurumu = .Bitis
         }
+        
+    }
+}
+
+
+
+extension GameScene : SKPhysicsContactDelegate {
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+        let mask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        
+        switch mask {
+            
+        case FizikKategorileri.kus | FizikKategorileri.blok :
+            
+            if let blok = contact.bodyA.node as? Blok {
+                blok.carpisma(guc: Int(contact.collisionImpulse))
+            } else if let blok = contact.bodyB.node as? Blok {
+                blok.carpisma(guc: Int(contact.collisionImpulse))
+            }
+            break
+        default :
+            break
+            
+        }
+        
         
     }
 }

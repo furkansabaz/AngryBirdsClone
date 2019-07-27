@@ -28,10 +28,10 @@ class Blok : SKSpriteNode {
             cani = 70
             break
         case .Tahta :
-            cani = 250
+            cani = 150
             break
         case .Tas :
-            cani = 450
+            cani = 250
             break
         }
         
@@ -54,6 +54,20 @@ class Blok : SKSpriteNode {
         physicsBody?.contactTestBitMask = FizikKategorileri.tumu
         physicsBody?.collisionBitMask = FizikKategorileri.tumu
     }
+    
+    func carpisma(guc : Int) {
+        cani -= guc
+        print("Engelin Geriye Kalan Canı : \(cani)")
+        
+        if cani <= 0 {
+            removeFromParent()
+        } else if cani < hasarDegeri {
+            color = .red
+        }
+        
+        
+    }
+    
 }
 
 
