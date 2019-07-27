@@ -9,10 +9,9 @@
 import Foundation
 import SpriteKit
 enum KusTipi : String {
-    
-    case Yesil
+    case Gri
     case Mavi
-    case Turuncu
+    case Sari
     case Kirmizi
 }
 
@@ -30,19 +29,8 @@ class Kus : SKSpriteNode {
     init(kusTipi : KusTipi) {
         self.kusTipi = kusTipi
         
-        let renk : UIColor!
-        
-        switch kusTipi {
-        case .Yesil :
-            renk = .green
-        case .Mavi :
-            renk = .blue
-        case .Turuncu :
-            renk = .orange
-        case .Kirmizi :
-            renk = .red
-        }
-        super.init(texture: nil, color: renk, size: CGSize(width: 40, height: 40))
+        let texture = SKTexture(imageNamed: kusTipi.rawValue+"1")
+        super.init(texture: texture, color: .clear, size: texture.size())
         
     }
     

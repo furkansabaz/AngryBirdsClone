@@ -20,8 +20,9 @@ class GameScene: SKScene {
     var kus = Kus(kusTipi: .Mavi)
     var kuslar = [
     Kus(kusTipi: .Kirmizi),
-    Kus(kusTipi: .Yesil),
-    Kus(kusTipi: .Turuncu)
+    Kus(kusTipi: .Gri),
+    Kus(kusTipi: .Mavi),
+    Kus(kusTipi: .Sari)
     ]
     
     let anchor = SKNode()
@@ -251,6 +252,7 @@ class GameScene: SKScene {
         kus.physicsBody?.isDynamic = false
         
         kus.position = anchor.position
+        kus.olceklendir(boyut: mapNode.tileSize, genislik: true, oran: 1.0)
         addChild(kus)
         anchorSinirlariniBelirle(aktif: true)
     }
