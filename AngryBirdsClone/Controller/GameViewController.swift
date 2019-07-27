@@ -46,7 +46,7 @@ extension GameViewController : SahneYoneticiDelegate {
     }
     
     func gosterLevelSahnesi() {
-        
+        print("Çalıştı")
         let level = LevelScene()
         level.sahneYoneticiDelegate = self
         goster(sahne: level)
