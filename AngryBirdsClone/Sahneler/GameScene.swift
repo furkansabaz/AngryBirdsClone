@@ -11,7 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    
+    var sahneYoneticiDelegate : SahneYoneticiDelegate?
     let oyunKamera = OyunKamera()
     var mapNode = SKTileMapNode()
     var panGR = UIPanGestureRecognizer()

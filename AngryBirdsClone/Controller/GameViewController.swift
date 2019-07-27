@@ -15,22 +15,56 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .resizeFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
-            
-            view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
-        }
+        gosterMenuSahnesi()
     }
 
     
 }
+
+protocol  SahneYoneticiDelegate {
+    
+    func gosterOyunSahnesi(level : Int)
+    func gosterMenuSahnesi()
+    func gosterLevelSahnesi()
+}
+
+extension GameViewController : SahneYoneticiDelegate {
+    
+    func gosterOyunSahnesi(level: Int) {
+        let sahneAdi = "GameScene\(level)"
+        if let oyunSahnesi = SKScene(fileNamed: sahneAdi) as? GameScene {
+            oyunSahnesi.sahneYoneticiDelegate = self
+            goster(sahne: oyunSahnesi)
+        }
+        
+    }
+    
+    func gosterMenuSahnesi() {
+        let menu = MenuScene()
+        menu.sahneYoneticiDelegate = self
+        goster(sahne: menu)
+    }
+    
+    func gosterLevelSahnesi() {
+        
+        let level = LevelScene()
+        level.sahneYoneticiDelegate = self
+        goster(sahne: level)
+    }
+    
+    func goster(sahne : SKScene) {
+        
+        if let view = self.view as! SKView? {
+            sahne.scaleMode = .resizeFill
+            view.presentScene(sahne)
+            view.ignoresSiblingOrder = true
+        }
+        
+    }
+    
+    
+    
+}
+
+
+
