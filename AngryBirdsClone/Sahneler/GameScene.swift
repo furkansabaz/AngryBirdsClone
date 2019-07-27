@@ -288,13 +288,28 @@ extension GameScene : SKPhysicsContactDelegate {
         
         switch mask {
             
-        case FizikKategorileri.kus | FizikKategorileri.blok :
+        case FizikKategorileri.kus | FizikKategorileri.blok , FizikKategorileri.blok | FizikKategorileri.kenar:
             
             if let blok = contact.bodyA.node as? Blok {
                 blok.carpisma(guc: Int(contact.collisionImpulse))
             } else if let blok = contact.bodyB.node as? Blok {
                 blok.carpisma(guc: Int(contact.collisionImpulse))
             }
+            break
+            
+            
+        case FizikKategorileri.blok | FizikKategorileri.blok :
+            
+            if let blok = contact.bodyA.node as? Blok {
+                blok.carpisma(guc: Int(contact.collisionImpulse))
+            }
+            if let blok = contact.bodyB.node as? Blok {
+                blok.carpisma(guc: Int(contact.collisionImpulse))
+            }
+            break
+        
+        case FizikKategorileri.kus | FizikKategorileri.kenar :
+            kus.ucuyorMu = false
             break
         default :
             break
