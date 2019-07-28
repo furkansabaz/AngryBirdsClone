@@ -18,12 +18,8 @@ class GameScene: SKScene {
     var pinchGR = UIPinchGestureRecognizer()
     var maxOlcek : CGFloat = 0
     var kus = Kus(kusTipi: .Mavi)
-    var kuslar = [
-    Kus(kusTipi: .Kirmizi),
-    Kus(kusTipi: .Gri),
-    Kus(kusTipi: .Mavi),
-    Kus(kusTipi: .Sari)
-    ]
+    var kuslar =  [Kus]()
+    var levelSayi : Int?
     
     let anchor = SKNode()
     
@@ -32,6 +28,21 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
         physicsWorld.contactDelegate = self
+        
+        guard let levelSayi = levelSayi else { return}
+        
+        guard let levelVeri = Level(level: levelSayi) else { return }
+        
+        for renk in levelVeri.kuslar {
+            if let yeniKusTipi = KusTipi(rawValue: renk) {
+                
+                let yeniKus = Kus(kusTipi: yeniKusTipi)
+                kuslar.append(yeniKus)
+            }
+        }
+        
+        
+        
         setupLevel()
         hazirlaGR()
     }
@@ -298,6 +309,14 @@ extension GameScene : SKPhysicsContactDelegate {
             } else if let blok = contact.bodyB.node as? Blok {
                 blok.carpisma(guc: Int(contact.collisionImpulse))
             }
+            
+            
+            if let kus = contact.bodyA.node as? Kus {
+                kus.ucuyorMu = false
+            } else if let kus = contact.bodyB.node as? Kus {
+                kus.ucuyorMu = false
+            }
+            
             break
             
             

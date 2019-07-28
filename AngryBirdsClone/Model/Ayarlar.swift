@@ -37,3 +37,8 @@ enum OyunDurumu {
     case Bitis
     case Dirilme
 }
+
+
+struct Leveller {
+    static var levellerSozluk = [String:Any]()
+}

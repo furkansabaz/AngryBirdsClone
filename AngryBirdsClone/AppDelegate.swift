@@ -15,7 +15,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        
+        if let url = Bundle.main.url(forResource: "Leveller", withExtension: "plist") {
+            do {
+                
+                let data = try Data(contentsOf: url)
+                guard let levellerSozluk = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String:Any] else {
+                    print("Leveller.plist Okunurken Hata Meydana Geldi")
+                    return false
+                }
+                Leveller.levellerSozluk = levellerSozluk
+            } catch {
+                print(error)
+            }
+            
+        }
+        
+        
+        
         return true
     }
 

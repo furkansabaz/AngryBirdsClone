@@ -34,6 +34,7 @@ extension GameViewController : SahneYoneticiDelegate {
         let sahneAdi = "GameScene\(level)"
         if let oyunSahnesi = SKScene(fileNamed: sahneAdi) as? GameScene {
             oyunSahnesi.sahneYoneticiDelegate = self
+            oyunSahnesi.levelSayi = level
             goster(sahne: oyunSahnesi)
         }
         
