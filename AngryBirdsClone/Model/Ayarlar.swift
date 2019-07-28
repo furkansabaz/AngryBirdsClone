@@ -26,6 +26,7 @@ struct FizikKategorileri {
     static let kenar : UInt32 = 0x1
     static let kus : UInt32 = 0x1 << 1
     static let blok : UInt32 = 0x1 << 2
+    static let dusman : UInt32 = 0x1 << 3
     
     
 }

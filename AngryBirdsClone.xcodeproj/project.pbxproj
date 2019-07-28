@@ -12,6 +12,7 @@
 		3D48B67E22E9E2FF00AEEF0A /* Ayarlar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D48B67D22E9E2FF00AEEF0A /* Ayarlar.swift */; };
 		3D521F8A22ED8D6A000DEE91 /* Leveller.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D521F8922ED8D6A000DEE91 /* Leveller.plist */; };
 		3D521F8C22ED8F0C000DEE91 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D521F8B22ED8F0C000DEE91 /* Level.swift */; };
+		3D521F9222EDEA0F000DEE91 /* Dusman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D521F9122EDEA0F000DEE91 /* Dusman.swift */; };
 		3DA1E26322E870AD0099C0FC /* Uzantilar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1E26222E870AD0099C0FC /* Uzantilar.swift */; };
 		3DA1E26722E889A80099C0FC /* Kus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1E26622E889A80099C0FC /* Kus.swift */; };
 		3DE745EA22EC8BEF00529FEA /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE745E922EC8BEF00529FEA /* MenuScene.swift */; };
@@ -35,6 +36,7 @@
 		3D48B67D22E9E2FF00AEEF0A /* Ayarlar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ayarlar.swift; sourceTree = "<group>"; };
 		3D521F8922ED8D6A000DEE91 /* Leveller.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Leveller.plist; sourceTree = "<group>"; };
 		3D521F8B22ED8F0C000DEE91 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		3D521F9122EDEA0F000DEE91 /* Dusman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dusman.swift; sourceTree = "<group>"; };
 		3DA1E26222E870AD0099C0FC /* Uzantilar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uzantilar.swift; sourceTree = "<group>"; };
 		3DA1E26622E889A80099C0FC /* Kus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kus.swift; sourceTree = "<group>"; };
 		3DE745E922EC8BEF00529FEA /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
@@ -105,16 +107,26 @@
 		3D152EBA22DC72A900295216 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3D152EBB22DC75BA00295216 /* OyunKamera.swift */,
+				3D521F9022EDE9E6000DEE91 /* Özel Node */,
 				3DA1E26222E870AD0099C0FC /* Uzantilar.swift */,
-				3DA1E26622E889A80099C0FC /* Kus.swift */,
 				3D48B67D22E9E2FF00AEEF0A /* Ayarlar.swift */,
-				3D48AAE622EB73B30088662E /* Blok.swift */,
-				3DE745EF22ECA8DE00529FEA /* SKButton.swift */,
 				3DE745F922ECF59800529FEA /* AnimasyonAyarlari.swift */,
 				3D521F8B22ED8F0C000DEE91 /* Level.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3D521F9022EDE9E6000DEE91 /* Özel Node */ = {
+			isa = PBXGroup;
+			children = (
+				3D48AAE622EB73B30088662E /* Blok.swift */,
+				3DA1E26622E889A80099C0FC /* Kus.swift */,
+				3D152EBB22DC75BA00295216 /* OyunKamera.swift */,
+				3DE745EF22ECA8DE00529FEA /* SKButton.swift */,
+				3D521F9122EDEA0F000DEE91 /* Dusman.swift */,
+			);
+			name = "Özel Node";
+			path = "Özel Node";
 			sourceTree = "<group>";
 		};
 		3DE745F122ECC5F800529FEA /* Leveller */ = {
@@ -238,6 +250,7 @@
 				3DF2EBE822D8745D00FDDF66 /* GameScene.swift in Sources */,
 				3DE745FA22ECF59800529FEA /* AnimasyonAyarlari.swift in Sources */,
 				3DA1E26722E889A80099C0FC /* Kus.swift in Sources */,
+				3D521F9222EDEA0F000DEE91 /* Dusman.swift in Sources */,
 				3DE745EA22EC8BEF00529FEA /* MenuScene.swift in Sources */,
 				3DF2EBEA22D8745D00FDDF66 /* GameViewController.swift in Sources */,
 				3DA1E26322E870AD0099C0FC /* Uzantilar.swift in Sources */,
