@@ -242,10 +242,29 @@ class GameScene: SKScene {
         physicsBody?.collisionBitMask = FizikKategorileri.tumu
         
         
-        anchor.position = CGPoint(x: frame.width/2, y: frame.height/2)
+        anchor.position = CGPoint(x: frame.width/2, y: (frame.height/2)*1.2)
         addChild(anchor)
         kusEkle()
+        sapanEkle()
     }
+    
+    func sapanEkle() {
+        
+        let sapan = SKSpriteNode(imageNamed: "sapan")
+        
+        let olcekBoyut = CGSize(width: 0, height: mapNode.frame.midY/2 - mapNode.tileSize.height/2)
+        
+        sapan.olceklendir(boyut: olcekBoyut, genislik: false, oran: 1)
+        
+        sapan.position = CGPoint(x: anchor.position.x, y: sapan.size.height/2 + mapNode.tileSize.height)
+        
+        sapan.zPosition = ZPozisyon.engeller
+        
+        mapNode.addChild(sapan)
+        
+    }
+    
+    
     
     func kusEkle(){
         
@@ -263,6 +282,7 @@ class GameScene: SKScene {
         kus.physicsBody?.isDynamic = false
         
         kus.position = anchor.position
+        kus.zPosition = ZPozisyon.kus
         kus.olceklendir(boyut: mapNode.tileSize, genislik: true, oran: 1.0)
         addChild(kus)
         anchorSinirlariniBelirle(aktif: true)

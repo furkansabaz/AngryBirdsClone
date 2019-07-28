@@ -13,7 +13,7 @@ import UIKit
 struct ZPozisyon {
     static let arkaPlan : CGFloat = 0
     static let engeller : CGFloat = 1
-    
+    static let kus : CGFloat = 3
     static let oyunDisiArkaPlan : CGFloat = 10
     static let labelMenu : CGFloat = 11
     
