@@ -19,6 +19,13 @@ class LevelScene: SKScene {
     func levelSahneGetir() {
         
         
+        let levelArkaPlan = SKSpriteNode(imageNamed: "levelArkaPlan")
+        levelArkaPlan.position = CGPoint(x: frame.midX, y: frame.midY)
+        levelArkaPlan.olceklendir(boyut: frame.size, genislik: true, oran: 1)
+        levelArkaPlan.zPosition = ZPozisyon.arkaPlan
+        addChild(levelArkaPlan)
+        
+        
         let satirBaslangicNoktasi = frame.midY*3/2
         let sutunBaslangicNoktasi = frame.midX/2
         
