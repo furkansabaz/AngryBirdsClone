@@ -60,7 +60,7 @@ class Dusman : SKSpriteNode {
             DispatchQueue.main.asyncAfter(deadline: .now()+0.7, execute: {
                 self.removeFromParent()
             })
-            //removeAllActions()
+            removeAllActions()
             return true
         }
         

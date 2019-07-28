@@ -20,10 +20,17 @@ class GameScene: SKScene {
     var kus = Kus(kusTipi: .Mavi)
     var kuslar =  [Kus]()
     var levelSayi : Int?
-    
     let anchor = SKNode()
-    
     var oyunDurumu : OyunDurumu = .Hazir
+    
+    var dusmanSayisi = 0 {
+        didSet {
+            if dusmanSayisi < 1 {
+                print("Tüm Düşmanlar Yok Oldu")
+            }
+        }
+        
+    }
     
     override func didMove(to view: SKView) {
         
@@ -198,36 +205,30 @@ class GameScene: SKScene {
                 
                 guard let adi = node.name else { continue}
                 
-                let bloklar = ["Cam","Tas","Tahta"]
                 
-                if !bloklar.contains(adi) { continue }
+                switch adi {
+                case "Cam","Tas","Tahta" :
+                    if let blok = blokEkle(node: node, adi: adi) {
+                        mapNode.addChild(blok)
+                        node.removeFromParent()
+                    }
+                    break
                 
-                
-                guard let blokTipi = BlokTipi(rawValue: adi) else { continue }
-                
-                print("Geldi")
-                let blok = Blok(tipi: blokTipi)
-                
-                
-                blok.position = node.position
-                blok.size = node.size
-                blok.zPosition = ZPozisyon.engeller
-                blok.zRotation = node.zRotation
-                blok.bodyOlustur()
-                mapNode.addChild(blok)
-                node.removeFromParent()
-        
-                
+                case "TuruncuDusman","YesilDusman" :
+                    if let dusman = dusmanEkle(node: node, adi: adi) {
+                        mapNode.addChild(dusman)
+                        dusmanSayisi += 1
+                        node.removeFromParent()
+                    }
+                    break
+                default :
+                    break
+                }
                 
             }
             
             
         }
-        
-        
-        
-        
-        
         
         let rect = CGRect(x: 0, y: mapNode.tileSize.height, width: mapNode.frame.size.width, height: mapNode.frame.size.height - mapNode.tileSize.height)
         physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
@@ -246,6 +247,33 @@ class GameScene: SKScene {
         addChild(anchor)
         kusEkle()
         sapanEkle()
+    }
+    
+    func blokEkle(node : SKSpriteNode, adi : String) -> Blok? {
+        guard let blokTipi = BlokTipi(rawValue: adi) else {  return nil }
+        let blok = Blok(tipi: blokTipi)
+        
+        
+        blok.position = node.position
+        blok.size = node.size
+        blok.zPosition = ZPozisyon.engeller
+        blok.zRotation = node.zRotation
+        blok.bodyOlustur()
+        return blok
+        
+    }
+    
+    func dusmanEkle(node : SKSpriteNode, adi : String) -> Dusman? {
+        
+        guard let dusmanTipi = DusmanTipi(rawValue: adi) else {return nil}
+        
+        let dusman = Dusman(dusmanTipi: dusmanTipi)
+        
+        dusman.size = node.size
+        dusman.position = node.position
+        dusman.olusturBody()
+        return dusman
+        
     }
     
     func sapanEkle() {
@@ -352,6 +380,20 @@ extension GameScene : SKPhysicsContactDelegate {
         
         case FizikKategorileri.kus | FizikKategorileri.kenar :
             kus.ucuyorMu = false
+            break
+        
+            
+        case FizikKategorileri.kus | FizikKategorileri.dusman , FizikKategorileri.blok | FizikKategorileri.dusman :
+            if let dusman = contact.bodyA.node as? Dusman {
+                if dusman.carpisma(guc: Int(contact.collisionImpulse)) {
+                    //düşman ölmüştür.
+                    dusmanSayisi = dusmanSayisi - 1
+                }
+            } else if let dusman = contact.bodyB.node as? Dusman {
+                if dusman.carpisma(guc: Int(contact.collisionImpulse)) {
+                    dusmanSayisi = dusmanSayisi - 1
+                }
+            }
             break
         default :
             break
