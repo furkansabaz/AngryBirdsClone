@@ -23,6 +23,7 @@ class GameScene: SKScene {
     let anchor = SKNode()
     var oyunDurumu : OyunDurumu = .Hazir
     var puan = 0
+    let lblPuan = SKLabelNode(fontNamed: "Chalkduster")
     var dusmanSayisi = 0 {
         didSet {
             if dusmanSayisi < 1 {
@@ -44,6 +45,7 @@ class GameScene: SKScene {
         physicsWorld.contactDelegate = self
         
         puan = UserDefaults.standard.integer(forKey: "puan")
+        puanEkle()
         
         guard let levelSayi = levelSayi else { return}
         
@@ -389,6 +391,26 @@ class GameScene: SKScene {
         oyunKamera.addChild(menu)
         
     }
+    
+    
+    func puanEkle() {
+        
+        let ekranBoyutu = UIScreen.main.bounds
+        let ekranGenislik = ekranBoyutu.width
+        let ekranYukseklik = ekranBoyutu.height
+        
+        lblPuan.position = CGPoint(x: ekranGenislik/2.1, y: ekranYukseklik/2.5)
+        lblPuan.fontColor = .black
+        lblPuan.text = "Puan : \(puan)"
+        lblPuan.verticalAlignmentMode = .top
+        lblPuan.horizontalAlignmentMode = .right
+        lblPuan.fontSize = 25
+        
+        
+        lblPuan.zPosition = ZPozisyon.engeller
+        oyunKamera.addChild(lblPuan)
+        
+    }
 }
 
 
@@ -453,6 +475,7 @@ extension GameScene : SKPhysicsContactDelegate {
             } else if let altin = contact.bodyB.node as? Altin {
                 puan += altin.carpisma()
             }
+            lblPuan.text = "Puan : \(puan)"
             print("Altına Çarptın ve Güncel Puanın : \(puan)")
             break
         default :
