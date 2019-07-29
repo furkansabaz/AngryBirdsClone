@@ -22,6 +22,7 @@ struct ZPozisyon {
 
 struct FizikKategorileri {
     static let bos : UInt32 = 0
+    static let altin : UInt32 = 0
     static let tumu : UInt32 = .max
     static let kenar : UInt32 = 0x1
     static let kus : UInt32 = 0x1 << 1

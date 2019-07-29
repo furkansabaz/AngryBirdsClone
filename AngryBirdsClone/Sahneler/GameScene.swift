@@ -22,15 +22,15 @@ class GameScene: SKScene {
     var levelSayi : Int?
     let anchor = SKNode()
     var oyunDurumu : OyunDurumu = .Hazir
-    
+    var puan = 0
     var dusmanSayisi = 0 {
         didSet {
             if dusmanSayisi < 1 {
-                print("Tüm Düşmanlar Yok Oldu")
                 
                 if let level = levelSayi {
                     let veriler = UserDefaults.standard
                     veriler.set(level+1, forKey: "maxLevel")
+                    veriler.set(puan, forKey: "puan")
                     
                 }
                 bitisMenuGoster(basarili: true)
@@ -42,6 +42,8 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
         physicsWorld.contactDelegate = self
+        
+        puan = UserDefaults.standard.integer(forKey: "puan")
         
         guard let levelSayi = levelSayi else { return}
         
@@ -231,8 +233,14 @@ class GameScene: SKScene {
                 case "TuruncuDusman","YesilDusman" :
                     if let dusman = dusmanEkle(node: node, adi: adi) {
                         mapNode.addChild(dusman)
-                        print("Bir Düşman Eklendi. Tipi : \(dusman.dusmanTipi) ve Güncel Düşman Sayısı : \(dusmanSayisi)")
                         dusmanSayisi += 1
+                        node.removeFromParent()
+                    }
+                    break
+                case "Altin1" , "Altin2" :
+                    
+                    if let altin = altinEkle(node: node, adi: adi) {
+                        mapNode.addChild(altin)
                         node.removeFromParent()
                     }
                     break
@@ -262,6 +270,19 @@ class GameScene: SKScene {
         addChild(anchor)
         kusEkle()
         sapanEkle()
+    }
+    
+    func altinEkle(node: SKSpriteNode, adi : String) -> Altin? {
+        guard let altinTipi = AltinTipi(rawValue: adi) else { return nil}
+        
+        let altin = Altin(tipi: altinTipi)
+        
+        altin.position = node.position
+        altin.size = node.size
+        altin.bodyOlustur()
+        altin.zPosition = ZPozisyon.kus
+        altin.zRotation = node.zRotation
+        return altin
     }
     
     func blokEkle(node : SKSpriteNode, adi : String) -> Blok? {
@@ -418,14 +439,21 @@ extension GameScene : SKPhysicsContactDelegate {
                     //düşman ölmüştür.
                     
                     dusmanSayisi = dusmanSayisi - 1
-                    print("Bir Düşman Öldü Tipi : \(dusman.dusmanTipi) ve Güncel Düşman Sayısı : \(dusmanSayisi)")
                 }
             } else if let dusman = contact.bodyB.node as? Dusman {
                 if dusman.carpisma(guc: Int(contact.collisionImpulse)) {
-                    print("Bir Düşman Öldü Tipi : \(dusman.dusmanTipi) ve Güncel Düşman Sayısı : \(dusmanSayisi)")
                     dusmanSayisi = dusmanSayisi - 1
                 }
             }
+            break
+            
+        case FizikKategorileri.kus | FizikKategorileri.altin :
+            if let altin = contact.bodyA.node as? Altin {
+                puan += altin.carpisma()
+            } else if let altin = contact.bodyB.node as? Altin {
+                puan += altin.carpisma()
+            }
+            print("Altına Çarptın ve Güncel Puanın : \(puan)")
             break
         default :
             break

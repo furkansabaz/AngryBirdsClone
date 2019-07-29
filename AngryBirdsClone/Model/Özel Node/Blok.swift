@@ -59,7 +59,6 @@ class Blok : SKSpriteNode {
     
     func carpisma(guc : Int) {
         cani -= guc
-        print("Engelin Geriye Kalan Canı : \(cani)")
         
         if cani <= 0 {
             removeFromParent()
