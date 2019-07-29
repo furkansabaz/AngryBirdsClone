@@ -143,6 +143,9 @@ class GameScene: SKScene {
         
         addChild(oyunKamera)
         guard let view = view else {return}
+        
+        oyunKamera.setScale(maxOlcek)
+        oyunKamera.sinirlariBelirle(sahne: self, frame: mapNode.frame, node: nil)
         oyunKamera.position = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
         camera = oyunKamera
     }
