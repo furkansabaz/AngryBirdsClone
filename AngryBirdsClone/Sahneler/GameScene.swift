@@ -222,6 +222,7 @@ class GameScene: SKScene {
                 case "TuruncuDusman","YesilDusman" :
                     if let dusman = dusmanEkle(node: node, adi: adi) {
                         mapNode.addChild(dusman)
+                        print("Bir Düşman Eklendi. Tipi : \(dusman.dusmanTipi) ve Güncel Düşman Sayısı : \(dusmanSayisi)")
                         dusmanSayisi += 1
                         node.removeFromParent()
                     }
@@ -406,10 +407,13 @@ extension GameScene : SKPhysicsContactDelegate {
             if let dusman = contact.bodyA.node as? Dusman {
                 if dusman.carpisma(guc: Int(contact.collisionImpulse)) {
                     //düşman ölmüştür.
+                    
                     dusmanSayisi = dusmanSayisi - 1
+                    print("Bir Düşman Öldü Tipi : \(dusman.dusmanTipi) ve Güncel Düşman Sayısı : \(dusmanSayisi)")
                 }
             } else if let dusman = contact.bodyB.node as? Dusman {
                 if dusman.carpisma(guc: Int(contact.collisionImpulse)) {
+                    print("Bir Düşman Öldü Tipi : \(dusman.dusmanTipi) ve Güncel Düşman Sayısı : \(dusmanSayisi)")
                     dusmanSayisi = dusmanSayisi - 1
                 }
             }

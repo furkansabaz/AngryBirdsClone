@@ -56,6 +56,13 @@ extension GameViewController : SahneYoneticiDelegate {
     func goster(sahne : SKScene) {
         
         if let view = self.view as! SKView? {
+            
+            if let grDizi = view.gestureRecognizers {
+                for gr in grDizi {
+                    view.removeGestureRecognizer(gr)
+                }
+            }
+            
             sahne.scaleMode = .resizeFill
             view.presentScene(sahne)
             view.ignoresSiblingOrder = true

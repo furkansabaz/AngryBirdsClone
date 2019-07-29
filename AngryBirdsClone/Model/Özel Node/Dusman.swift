@@ -51,16 +51,21 @@ class Dusman : SKSpriteNode {
     
     func carpisma(guc : Int) -> Bool {
         
+        if canDegeri < 0 {
+            return false
+        }
+        
         canDegeri -= guc
         
         if canDegeri <= 0 {
+            removeAllActions()
             let yokOlma = SKTexture(imageNamed: "yokOlma")
             texture = yokOlma
             
             DispatchQueue.main.asyncAfter(deadline: .now()+0.7, execute: {
                 self.removeFromParent()
             })
-            removeAllActions()
+            
             return true
         }
         
