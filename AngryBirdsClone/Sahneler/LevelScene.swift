@@ -30,6 +30,9 @@ class LevelScene: SKScene {
         let sutunBaslangicNoktasi = frame.midX/2
         
         var level = 1
+        let veriler = UserDefaults.standard
+        var maxLevel = veriler.integer(forKey: "maxLevel")
+        maxLevel = maxLevel <= 0 ? 1 : maxLevel
         
         for satir in 0...2 {
             for sutun in 0...2 {
@@ -39,12 +42,14 @@ class LevelScene: SKScene {
                 btnLevel.position = CGPoint(x: CGFloat(sutun)*sutunBaslangicNoktasi + sutunBaslangicNoktasi, y: satirBaslangicNoktasi - CGFloat(satir)*frame.midY/2)
                 
                 btnLevel.zPosition = ZPozisyon.oyunDisiArkaPlan
+                btnLevel.isUserInteractionEnabled = level>maxLevel ? false : true
                 
                 addChild(btnLevel)
                 
                 
                 let lblLevel = SKLabelNode(fontNamed: "AvenirNext-Bold")
-                lblLevel.color = .white
+                
+                lblLevel.fontColor = level>maxLevel ? .red : .white
                 lblLevel.text = "\(level)"
                 lblLevel.verticalAlignmentMode = .center
                 lblLevel.horizontalAlignmentMode = .center

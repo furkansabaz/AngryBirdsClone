@@ -27,6 +27,12 @@ class GameScene: SKScene {
         didSet {
             if dusmanSayisi < 1 {
                 print("Tüm Düşmanlar Yok Oldu")
+                
+                if let level = levelSayi {
+                    let veriler = UserDefaults.standard
+                    veriler.set(level+1, forKey: "maxLevel")
+                    
+                }
                 bitisMenuGoster(basarili: true)
             }
         }
