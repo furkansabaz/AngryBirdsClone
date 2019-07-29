@@ -59,6 +59,14 @@ extension GameViewController : SahneYoneticiDelegate {
             sahne.scaleMode = .resizeFill
             view.presentScene(sahne)
             view.ignoresSiblingOrder = true
+            
+            if let grDiziler = view.gestureRecognizers {
+                for gr in grDiziler {
+                    view.removeGestureRecognizer(gr)
+                }
+            }
+            
+            
         }
         
     }

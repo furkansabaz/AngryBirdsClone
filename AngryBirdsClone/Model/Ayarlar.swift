@@ -37,6 +37,7 @@ enum OyunDurumu {
     case Ucuyor
     case Bitis
     case Dirilme
+    case OyunBitti
 }
 
 

@@ -27,6 +27,7 @@ class GameScene: SKScene {
         didSet {
             if dusmanSayisi < 1 {
                 print("Tüm Düşmanlar Yok Oldu")
+                bitisMenuGoster(basarili: true)
             }
         }
         
@@ -81,6 +82,10 @@ class GameScene: SKScene {
             })
             break
         case .Dirilme :
+            break
+        case .OyunBitti :
+            break
+        default :
             break
             
         }
@@ -298,6 +303,8 @@ class GameScene: SKScene {
         
         if kuslar.isEmpty {
             print("Hakkınız Bitti")
+            oyunDurumu = .OyunBitti
+            bitisMenuGoster(basarili: false)
             return
         }
         kus = kuslar.removeFirst()
@@ -337,6 +344,18 @@ class GameScene: SKScene {
             kus.removeFromParent()
             oyunDurumu = .Bitis
         }
+        
+    }
+    
+    func bitisMenuGoster(basarili : Bool){
+        
+        let tipi = basarili ? 1 : 2
+        let menu = BitisMenu(tipi: tipi, boyut: frame.size)
+        
+        menu.zPosition = ZPozisyon.oyunDisiArkaPlan
+        
+        menu.menuButonDelegate = self
+        oyunKamera.addChild(menu)
         
     }
 }
@@ -402,4 +421,26 @@ extension GameScene : SKPhysicsContactDelegate {
         
         
     }
+}
+
+
+extension GameScene : MenuButonDelegate {
+    func btnMenuPressed() {
+        sahneYoneticiDelegate?.gosterLevelSahnesi()
+    }
+    
+    func btnIleriPressed() {
+        
+        if let level = levelSayi {
+            sahneYoneticiDelegate?.gosterOyunSahnesi(level: level+1)
+        }
+    }
+    
+    func btnYenidenDenePressed() {
+        if let level = levelSayi {
+            sahneYoneticiDelegate?.gosterOyunSahnesi(level: level)
+        }
+    }
+    
+    
 }
